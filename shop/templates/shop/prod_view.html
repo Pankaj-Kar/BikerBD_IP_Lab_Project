@@ -1,0 +1,51 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block content %}
+<div class="card text-center">
+    <div class="card-header">
+      {{prod.category}}
+    </div>
+    <div>
+        <img src="/media/{{ prod.image }}" class="center" height="300" width="300">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{prod.product_name}}</h5>
+      <p class="card-text">{{prod.description}}</p>
+      <a href="#" id="cart"class="btn btn-primary">Add to Cart</a>
+      <a href="{% url 'checkout' %}" class="btn btn-primary">Buy</a>
+    </div>
+    <div class="card-footer text-muted">
+      A great product
+    </div>
+  </div>
+{% endblock %}
+{% block js %}
+<script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+<script>
+
+    console.log('working');
+    
+    if (localStorage.getItem('cart') == null) {
+        cart = 0;
+    }
+    else {
+        cart = JSON.parse(localStorage.getItem('cart'));
+        document.getElementById('cart').innerHTML = cart;
+    }
+    $('.add').click(function () {
+        console.log('clicked');
+        cart += 1;
+        console.log(cart)
+        localStorage.setItem('cart', JSON.stringify(cart));
+        document.getElementById('cart').innerHTML = cart;
+    });
+
+    $('.clr').click(function(){
+        console.log("clrr");
+        cart = 0;
+        localStorage.clear();
+        document.getElementById('cart').innerHTML = cart;
+    });
+</script>
+{% endblock %}

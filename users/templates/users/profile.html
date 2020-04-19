@@ -1,0 +1,32 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block content %}
+    
+    
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+            <div class="well well-sm">
+                <div class="inline-block">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="{{ user.profile.image.url }}" alt="" class="img-rounded img-responsive" height="300" width="200" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>
+                            {{ user.username }}</h4>
+                        <small><cite > {{ user.profile.bike }} </cite></small>
+                        <p>
+                            <i class="glyphicon glyphicon-envelope"></i>{{ user.email }}
+                            <br />
+                            {{ user.profile.bio }}
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="{% url "update" %}" class="btn btn-outline-info">Update</a>
+        </div>
+    </div>
+</div>
+    
+{% endblock content %}
